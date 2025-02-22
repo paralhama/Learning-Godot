@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkrtywu0ulfp5"]
+
+[ext_resource type="Texture2D" uid="uid://d2kvbrf0k1qhe" path="res://assets/sprites/LeftLimitCamera.png" id="1_bu8wo"]
+[ext_resource type="Script" path="res://scripts/CameraLimit.gd" id="1_lahu3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4lipb"]
+size = Vector2(14.5161, 800)
+
+[node name="LeftCameraLimit" type="StaticBody2D"]
+position = Vector2(0, -50)
+collision_layer = 9
+script = ExtResource("1_lahu3")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -10.0
+offset_top = -750.0
+offset_right = 10.0
+offset_bottom = 50.0
+scale = Vector2(0.800001, 1)
+pivot_offset = Vector2(10, 800)
+texture = ExtResource("1_bu8wo")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -350)
+scale = Vector2(1.24, 1)
+shape = SubResource("RectangleShape2D_4lipb")

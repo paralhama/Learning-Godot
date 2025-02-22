@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5lim2l2uvwyk"]
+
+[ext_resource type="Script" path="res://scripts/enemy1.gd" id="1_7b5kw"]
+[ext_resource type="Texture2D" uid="uid://0184x8dxoa7m" path="res://assets/sprites/slime_green.png" id="1_jvvih"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drgmx"]
+atlas = ExtResource("1_jvvih")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxyiu"]
+atlas = ExtResource("1_jvvih")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dk5bu"]
+atlas = ExtResource("1_jvvih")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x46g1"]
+atlas = ExtResource("1_jvvih")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_te7o3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drgmx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxyiu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dk5bu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x46g1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="enemy1" type="CharacterBody2D"]
+z_index = 10
+script = ExtResource("1_7b5kw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_te7o3")
+autoplay = "default"
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, -5)
+target_position = Vector2(9, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="PlayerCollision" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(0, -10)
+scale = Vector2(1.56, 1)
+polygon = PackedVector2Array(-3.20513, 5, -4.53992, 5.85, -4.18106, 7.05988, -3.90921, 7.75265, -3.49706, 8.44542, -3.02352, 9.10311, -2.64644, 9.51527, -2, 10, 2, 10, 2.39567, 9.64151, 2.98692, 9.03712, 3.40737, 8.459, 3.8541, 7.65752, 4.30843, 6.82372, 4.65607, 6.16156, 4.90438, 5.48284, 3.20513, 5, 3.20513, -2, -3.20513, -2)
+
+[node name="PlayerCollision" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(1.56, 1)
+polygon = PackedVector2Array(-3.20513, 5, -4.53992, 5.85, -4.18106, 7.05988, -3.90921, 7.75265, -3.49706, 8.44542, -3.02352, 9.10311, -2.64644, 9.51527, -2, 10, 2, 10, 2.39567, 9.64151, 2.98692, 9.03712, 3.40737, 8.459, 3.8541, 7.65752, 4.30843, 6.82372, 4.65607, 6.16156, 4.90438, 5.48284, 3.20513, 5, 3.20513, -2, -3.20513, -2)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
